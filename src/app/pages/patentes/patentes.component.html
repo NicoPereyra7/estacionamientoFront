@@ -1,0 +1,22 @@
+<div class="container py-5">
+    <div class="jumbotron">
+      <h1 class="text-secondary">Patentes</h1>
+    </div>
+  
+
+  
+<table class="fixed_headers">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>patenteI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let patente of patentes ">
+      <td>{{patente.id}}</td>
+      <td>{{patente.patente}}</td>      
+    </tr>    
+  </tbody>
+</table>
+</div>
