@@ -1,0 +1,124 @@
+<div *ngIf="!activo" class="container">
+  <h1 class="text-secondary">Bienvenido al Estacionamiento Cespi</h1>
+  <br />
+
+  <p>
+    Para iniciar Estacionamiento el monto de su cuenta corriente debe superar el
+    costo del Estacionamiento por Hora de la Ciudad
+  </p>
+
+  <p>El costo del valor por Hora en la ciudad es de $10.00</p>
+
+  <p>Saldo Actual es de: ${{ saldo }}</p>
+  <div class="row">
+    <div class="col">
+      <div class="container py-5">
+        <div class="jumbotron">
+          <h3 class="text-secondary">Inicio con una nueva "Patente"</h3>
+        </div>
+        <p>
+          Ingresando en esta seccion no se guarda la Patente iniciada. Para
+          guarar una Patente por favor dirigirse a la seleccion "Patentes"
+        </p>
+        <p>Ingrese una patente con formato "AAA123" o "AA123AA"</p>
+        <div class="container">
+          <div class="row mt-5">
+            <div class="col-md-4 mx-auto">
+              <form
+                (ngSubmit)="comenzarEstacionamientoNuevaPatente()"
+                novalidate
+                #f="ngForm"
+              >
+                <div class="form-group">
+                  <label for="patente Nueva">patente</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="patente nueva"
+                    name="patente nueva"
+                    [(ngModel)]="nuevaPatente"
+                    required
+                  />
+                </div>
+                <br />
+                <button
+                  class="btn btn-outline-success btn-block"
+                  [disabled]="!f.valid"
+                >
+                  Crear
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="container py-5">
+        <div class="jumbotron">
+          <h3 class="text-secondary">Inicio con una de mis de "Patentes"</h3>
+        </div>
+        <p>
+          Seleccione una Patente de su lista de Patentes. Para ver mis Patentes
+          por favor dirigirse a la seleccion "Patentes"
+        </p>
+        <div class="container">
+          <div class="row mt-5">
+            <div class="col-md-4 mx-auto">
+              <form
+                (ngSubmit)="comenzarEstacionamiento()"
+                novalidate
+                #g="ngForm"
+              >
+                <div class="form-group">
+                  <label for="patente">patente</label>
+                  <p>
+                    <select id="patente" name="patente" [(ngModel)]="patente">
+                      <option *ngFor="let item of patentes" [ngValue]="item">
+                        {{ item.patente }}
+                      </option>
+                    </select>
+                  </p>
+                </div>
+                <button
+                  class="btn btn-outline-success btn-block"
+                  [disabled]="!g.valid"
+                >
+                  Iniciar Estacionamiento
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="activo" class="container py-5">
+  <div class="jumbotron">
+    <h1 class="text-secondary">Estacionamiento Activo</h1>
+  </div>
+  <table class="fixed_headers">
+    <thead>
+      <tr>
+        <th>patente</th>
+        <th>Fecha y Hora Inicio</th>
+        <th>Finalizar Estacionamiento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let estacionamiento of estacionamientos">
+        <td>{{ estacionamiento.patente.patente }}</td>
+        <td>{{ estacionamiento.horaInicio }}</td>
+        <td *ngIf="estacionamiento.activo">
+          <a
+            class="btn btn-danger ml-2"
+            (click)="finalizarEstacionamiento(estacionamiento.id)"
+            >Finalizar Estacionamiento</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

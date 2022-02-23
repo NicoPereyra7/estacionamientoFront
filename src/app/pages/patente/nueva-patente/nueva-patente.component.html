@@ -1,0 +1,37 @@
+<div class="col">
+  <div class="container py-5">
+    <div class="jumbotron">
+      <h1 class="text-secondary">Nueva Patente</h1>
+    </div>
+    <p>
+      Ingrese una patente con formato "AAA123" o "AA123AA" para guardar su
+      Patente en el listado de Patentes
+    </p>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-4 mx-auto">
+          <form (ngSubmit)="crearPatente()" novalidate #f="ngForm">
+            <div class="form-group">
+              <label for="patente Nueva">patente</label>
+              <input
+                type="text"
+                class="form-control"
+                id="patente"
+                name="patente"
+                [(ngModel)]="patente"
+                required
+              />
+            </div>
+            <br />
+            <button
+              class="btn btn-outline-success btn-block"
+              [disabled]="!f.valid"
+            >
+              Crear
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="col">
+  <div class="container py-5">
+    <div class="jumbotron">
+      <h1 class="text-secondary">Registrar Usuario</h1>
+    </div>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-4 mx-auto">
+          <form (ngSubmit)="crearUsuario()" novalidate #f="ngForm">
+            <div class="form-group">
+              <div>
+                <label for="mail">email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="mail"
+                  name="mail"
+                  [(ngModel)]="usuarioNuevo.mail"
+                  required
+                />
+              </div>
+              <div>
+                <label for="telefono">telefono</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="telefono"
+                  name="telefono"
+                  [(ngModel)]="usuarioNuevo.telefono"
+                  required
+                />
+              </div>
+              <div>
+                <label for="clave">clave</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="clave"
+                  name="clave"
+                  [(ngModel)]="usuarioNuevo.clave"
+                  required
+                />
+              </div>
+            </div>
+            <br />
+            <button
+              class="btn btn-outline-success btn-block"
+              [disabled]="!f.valid"
+            >
+              Crear Usuario
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

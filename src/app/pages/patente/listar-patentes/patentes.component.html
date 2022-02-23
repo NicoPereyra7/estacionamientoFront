@@ -1,0 +1,44 @@
+<div class="container py-5">
+  <div class="jumbotron">
+    <h1 class="text-secondary">Listado de mis Patentes</h1>
+  </div>
+  <div>
+    <a class="btn btn-success" (click)="agregarPatente()">Agregar Patente</a>
+  </div>
+  <br />
+  <div *ngIf="vacio" class="container">
+    <table class="fixed_headers">
+      <thead>
+        <tr>
+          <th>patente</th>
+          <th>Iniciar</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+        </tr>
+        <tr></tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let patente of patentes">
+          <td>{{ patente.patente }}</td>
+          <td>
+            <a class="btn btn-secondary">Iniciar Estacionamiento</a>
+          </td>
+          <td>
+            <a class="btn btn-primary" (click)="editarPatente(patente.id)"
+              >Editar</a
+            >
+          </td>
+          <td>
+            <a class="btn btn-danger" (click)="eliminar(patente.id)"
+              >Eliminar</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="!vacio" class="container">
+    <p>Ustes no posee patente en la lista mis Patentes</p>
+  </div>
+</div>

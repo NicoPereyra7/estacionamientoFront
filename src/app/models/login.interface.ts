@@ -1,4 +1,4 @@
-export interface LoginI{
-    telefono:string;
-    clave:string;
+export interface LoginI {
+    telefono: string;
+    clave: string;
 }

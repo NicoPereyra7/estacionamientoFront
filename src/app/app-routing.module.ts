@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './ui/layout/layout.component';
-import { NuevaPatenteComponent } from './pages/nueva-patente/nueva-patente.component';
-import { EditarPatenteComponent } from './pages/editar-patente/editar-patente.component';
 
 const routes: Routes = [
   {
@@ -15,25 +13,38 @@ const routes: Routes = [
         loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
       },
 
-      { 
+      {
         path: 'patentes',
-        loadChildren: () => import('./pages/patentes/patentes.module').then(m => m.PatentesModule) 
+        loadChildren: () => import('./pages/patente/listar-patentes/patentes.module').then(m => m.PatentesModule)
       },
 
-      { 
+      {
         path: 'login',
-        loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) 
+        loadChildren: () => import('./pages/User/login/login.module').then(m => m.LoginModule)
       },
+      {
+        path: 'nuevaPatente', loadChildren: () => import('./pages/patente/nueva-patente/nueva-patente.module').then(m => m.NuevaPatenteModule),
+      },
+      {
+        path: 'editarPatente/:id', loadChildren: () => import('./pages/patente/editar-patente/editar-patente.module').then(m => m.EditarPatenteModule),
+      },
+      {
+        path: 'estacionamiento', loadChildren: () => import('./pages/estacionamiento/estacionamiento.module').then(m => m.EstacionamientoModule),
+      },
+      {
+        path: 'registrarse', loadChildren: () => import('./pages/User/registro/registro.module').then(m => m.RegistroModule)
+      },
+      {
+        path: 'cuentacorriente', loadChildren: () => import('./pages/cuentacorriente/cuentacorriente.module').then(m => m.CuentaCorrienteModule)
+      },
+
     ],
   },
-  {
-    path: 'patentes/nuevaPatente',component:NuevaPatenteComponent
-  },
-  {
-    path: 'patentes/editarPatente', component:EditarPatenteComponent
-  }
- 
-  
+
+
+
+
+
 ];
 
 @NgModule({

@@ -1,0 +1,93 @@
+<div class="col">
+  <div class="container py-5">
+    <div class="jumbotron">
+      <h3 class="text-secondary">Cargar salgo en su Cuenta Corriente</h3>
+    </div>
+    <p>Ingresando en esta seccion puede cargar saldo en su Cuenta Corriente</p>
+    <p>Ademas podra Ver sus ultimos movimientos de su Cuenta</p>
+    <p>
+      Recuerde que para poder cargar saldo debera superar el monto minimo de
+      $100
+    </p>
+    <p>Su Saldo Actual es de: ${{ saldo }}</p>
+
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-4 mx-auto">
+          <form (ngSubmit)="cargarCuentaCorriente()" novalidate #f="ngForm">
+            <div class="form-group">
+              <label for="monto">Monto</label>
+              <input
+                type="text"
+                class="form-control"
+                id="monto"
+                name="monto"
+                [(ngModel)]="monto"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Telefono</label>
+              <input
+                type="text"
+                class="form-control"
+                id="telefono"
+                name="telefono"
+                [(ngModel)]="telefono"
+                required
+              />
+            </div>
+            <br />
+            <button
+              class="btn btn-outline-success btn-block"
+              [disabled]="!f.valid"
+            >
+              Cargar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!mostrar" class="container py-5">
+  <button
+    class="btn btn-outline-success btn-block"
+    (click)="mostrarOperaciones()"
+  >
+    Ver Ultimas Operaciones
+  </button>
+</div>
+
+<div *ngIf="mostrar" class="container py-5">
+  <button
+    class="btn btn-outline-success btn-block"
+    (click)="ocultarOperaciones()"
+  >
+    Ocultar Ultimas Operaciones
+  </button>
+</div>
+
+<div *ngIf="mostrar" class="container py-5">
+  <div class="jumbotron">
+    <h1 class="text-secondary">Ultimos Movimientos</h1>
+  </div>
+  <table class="fixed_headers">
+    <thead>
+      <tr>
+        <th>Tipo Movimiento</th>
+        <th>Fecha</th>
+        <th>monto</th>
+        <th>Saldo Previo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let operacion of operaciones">
+        <td>{{ operacion.tipoMovimiento }}</td>
+        <td>{{ operacion.fecha }}</td>
+        <td>{{ operacion.monto }}</td>
+        <td>{{ operacion.saldoPrevio }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

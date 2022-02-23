@@ -1,6 +1,6 @@
-export interface ciudadI{
-    id:number;
-    horarioInicio:String; 
-    horarioFin:String;
-    valorPorHs:number;
+export interface CiudadI {
+    id: number;
+    horarioInicio: String;
+    horarioFin: String;
+    valorPorHs: number;
 }

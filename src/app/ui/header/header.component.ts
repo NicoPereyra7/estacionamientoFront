@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenService} from '../../servicios/api/token.service'
+import { TokenService } from '../../servicios/api/token.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
-  loggeado=false;
+  loggeado = false;
 
   constructor(private tokenService: TokenService) { }
 
@@ -16,4 +15,8 @@ export class HeaderComponent implements OnInit {
     this.loggeado = this.tokenService.isLogged();
   }
 
+  salir(): void {
+    this.tokenService.logOut();
+    window.location.reload();
+  }
 }
